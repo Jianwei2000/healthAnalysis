@@ -1,6 +1,6 @@
-import { updateBMI } from "./bmiUpdater.js";
-import { updateTDEE } from "./tdeeUpdater.js";
-import {updateResult} from "./exerciseCal.js";
+import { updateBMI } from "bmiUpdater.js";
+import { updateTDEE } from "tdeeUpdater.js";
+import {updateResult} from "exerciseCal.js";
 
 const age = document.querySelector('#age'); //年齡
 const height = document.querySelector('#height');  //身高
