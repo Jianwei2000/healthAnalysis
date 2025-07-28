@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&family=Rubik+Doodle+Shadow&display=swap');
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+     font-family: "Noto Sans TC", sans-serif;
  
 }
 html, body {
@@ -26,7 +28,6 @@ header{
         text-shadow: rgba(255, 255, 255, 0.8) 2px 2px 4px;
         font-size: 3.5rem;
         font-weight: bold;
-        font-family: Arial, Helvetica, sans-serif;
     }
     @media(max-width: 768px) {
         padding: 20px;
