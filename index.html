@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI熱量分析科技</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css">
+    <link rel="stylesheet" href="all.css">
+</head>
+<body>
+    
+    <header>
+        <h1><span style="color:#FFF;">Health </span><span style="color: thistle;">Analysis</span></h1>
+        <p>BMI熱量分析科技，幫助您了解身體狀況與熱量需求。</p>
+    </header>
+    <main>
+        <form id="calculate">
+            <h2 class="light-text">數據輸入</h2>
+
+            <label for="age"><span>年齡 (歲):</span><span id="ageValue" class="light-text">25</span></label>
+            <input type="range" id="age" name="age" min="0" max="120" value="25" step="1" required oninput="ageValue.textContent = this.value">
+            
+            <label for="height"><span>身高 (cm):</span><span id="heightValue" class="light-text">175</span></label>
+            <input type="range" id="height" name="height" min="100" max="220" value="175" step="1" required oninput="heightValue.textContent = this.value">
+
+            <label for="weight"><span>體重 (kg):</span><span id="weightValue" class="light-text">70</span></label>
+            <input type="range" id="weight" name="weight" min="30" max="150" value="70" step="1" required oninput="weightValue.textContent = this.value">
+            
+            <label for="sex"><span>性別</span></label>
+            <div class="radio-group">
+                <input type="radio" name="sex" id="male" value="male" checked>
+                <label for="male">男性</label>
+                <input type="radio" name="sex" id="female" value="female">
+                <label for="female">女性</label>
+            </div>
+           
+
+            <label for="exercise"><span>運動習慣</span></label>
+           <select name="exercise" id="exercise">
+               <option value="0">幾乎不運動</option>
+               <option value="1" selected>輕度(每周運動約1~3天)</option>
+               <option value="2">中度(每周運動約3~5天)</option>
+               <option value="3">高強度(每周運動約6~7天)</option>
+               <option value="4">極高強度(每天高強度運動)</option>
+           </select>
+
+            <button id="analyze" type="button">開始分析</button>
+        </form>
+        <div id="result">
+            <nav class="tabs">
+                <ul>
+                    <li class="active"><a >BMI分析</a></li>
+                    <li><a >熱量需求</a></li>
+                    <li><a >耗能計算</a></li>
+                </ul>
+            </nav>
+
+            <!--bmi內容-->
+            <div style="display: block;" class="tab active">
+                <div id="bmiData" class="data">
+                    <h2 class="light-text">BMI指數</h2>
+                    <div class="circle">
+                        <p id="bmiValue">22.9<span class="shine"></span></p>
+                    </div>
+                    
+                        <label><span>過輕</span><span>正常</span><span>過重</span><span>超重</span></label>
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+                  
+                    <div class="data-report">
+                        <p id="bmiReport">BMI指數為 22.9</p>
+                        <span id="bmiStatus" style="color: lightgreen;">正常範圍</span>
+                    </div>
+    
+                </div>
+                <div id="bmiInfo" class="info">
+                    <h2 class="light-text">優化指南</h2>
+                    <p>您的BMI指數位於 18.5 到 24 之間，屬於 <span style="color: lawngreen;">健康體重</span>。</p>
+                    <p>以下供您參考:</p>
+                    <ul>
+                        <li>保持目前的良好習慣，維持健康的身體狀態。</li>
+                        <li>可以進行一些抗阻訓練，以增強肌肉量，美化體態。</li>
+                        <li>定期安排全身健康檢查，及早發現潛在風險。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--calories內容-->
+            <div class="tab">
+                 <div id="tdeeData" class="data">
+                    <h2 class="light-text">每日熱量分析</h2>
+                    <div class="card-wrap">
+                        <div class="card">
+                            <span class="shine"></span>
+                            <h3>基礎代謝率【BMR】</h3>
+                            <h4 class="light-text" id="bmrValue">1673</h4>
+                            <p>卡路里 / 每日</p>
+                        </div>
+                        <div class="card">
+                            <span class="shine"></span>
+                            <h3>維持體重所需【TDEE】</h3>
+                            <h4 class="light-text" id="tdeeValue">2301</h4>
+                            <p>卡路里 / 每日</p>
+                        </div>
+                        <div class="card">
+                            <span class="shine"></span>
+                            <h3>減重所需【-15%】</h3>
+                            <h4 class="light-text" id="tdee15Value">1955</h4>
+                            <p>卡路里 / 每日</p>
+                        </div>
+                    </div>
+                    <h2 class="light-text">營養素分配</h2>    
+                    <div class="card-wrap">
+                        <div class="card">
+                            <span class="shine"></span>
+                            <h3 style="color:orange">脂肪【25%】</h3>
+                            <h4 id="fat">63克<span>575 卡</span></h4>
+                            
+                        </div>
+                        <div class="card">
+                            <span class="shine"></span>
+                            <h3 style="color: aqua;">碳水化合物【45%】</h3>
+                            <h4 id="carbohydrate">258克<span>1035 卡</span></h4>
+                            
+                        </div>
+                        <div class="card">
+                            <span class="shine"></span>
+                            <h3 style="color:violet;">蛋白質【30%】</h3>
+                            <h4 id="protein">172克<span>690 卡</span></h4>
+                            
+                        </div>
+                    </div>
+
+                </div>
+                <div id="tdeeInfo" class="info">
+                    <h2 class="light-text">營養攝取指南</h2>
+                    <p>以下供您參考:</p>
+                    <ul>
+                        <li><strong>蛋白質</strong>：占總熱量約 30%～40%，有助維持肌肉量與促進代謝。</li>
+                        <li><strong>脂肪</strong>：占總熱量約 25%～40%，建議選擇優質不飽和脂肪，如橄欖油、堅果與魚油。</li>
+                        <li><strong>碳水化合物</strong>：占總熱量約 30%～45%，以全穀類、蔬果等低升糖指數食物為主。</li>
+                        <li><strong>熱量換算</strong>：蛋白質與碳水化合物每克提供 4 大卡，脂肪每克提供 9 大卡。</li>
+                        <li><strong>個人化調整</strong>：<span style="color: rgb(255, 191, 71);">依個人體質、目標及運動習慣調整比例</span>，必要時可諮詢營養師獲得專業建議。</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--exercise內容-->
+            <div class="tab">
+                <div id="exerciseData" class="data">
+                    <h2 class="light-text">選擇有氧項目</h2>
+                    <ul class="card-wrap">
+                        <li class="card" data-select="run">
+                            <span class="shine"></span>
+                            <i class="fa-solid fa-person-running"></i>
+                            <h3>跑步</h3>
+                         
+                        </li>
+                        <li class="card" data-select="jump">
+                            <span class="shine"></span>
+                            <i class="fa-solid fa-person-arrow-up-from-line"></i>
+                            <h3>跳繩</h3>
+                           
+                        </li>
+                        <li class="card" data-select="swim">
+                            <span class="shine"></span>
+                            <i class="fa-solid fa-person-swimming"></i>
+                            <h3>游泳</h3>
+                            
+                        </li>
+                    </ul>
+                    <div class="progress-title"><span>目標消耗熱量</span><span id="carValue">500 kcal</span></div>
+                    <input type="range" id="consumption" min="0" max="1000" value="500" step="10" oninput="carValue.textContent = this.value + ' kcal' ">   
+                </div>
+                <div id="exerciseInfo" class="info">
+                    <h2 class="light-text">計算結果</h2>
+                    <div class="result-wrap">
+                        <h4>請先選擇有氧項目</h4>
+                         <!-- <div class="title-wrap">
+                            <div class="title">
+                                <span class="shine"></span>
+                                <i class="fa-solid fa-person-running"></i>
+                            </div>
+                            <p>MET ≈ 10.0</p>
+                         </div>
+                         <ul >
+                            <li >
+                                <h3 style="color:chocolate;">體重</h3>
+                                <span class="shine"></span>
+                                <h4 class="light-text" id="kgValue">70<span>公斤</span></h4>
+                            </li>
+                            <li >
+                                <h3 style="color: orange;">目標消耗</h3>
+                                <span class="shine"></span>
+                                <h4 class="light-text" id="calValue">500 <span>卡路里</span></h4>
+                            </li>
+                            <li >
+                                <h3 style="color:skyblue;">所需時間</h3>
+                                <span class="shine"></span>
+                                <h4 class="light-text" id="minValue">42<span>分鐘</span></h4>
+                            </li>
+                           
+                         </ul>
+                         <div class="result-info">
+                            <h3>跑步 42 分鐘可消耗 500 卡路里，相當於約 64 克脂肪</h3>
+                            <p>計算公式: 熱量（kcal）＝ 代謝當量(MET) × 體重（kg）× 時間（hr）</p>
+                         </div> -->
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </main>
+    <footer>
+        <p>© 2025 JianWei - 分析結果僅供參考，個人健康詳情請諮詢專業醫師或營養師</p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+    <script src="/scripts/tabcontrol.js"></script>
+    <script type="module" src="/scripts/exerciseCal.js"></script>
+    <script type="module" src="/scripts/calculate.js"></script>
+    <script>
+        //鏡面反射動畫
+        
+        glassAnimate();
+
+        function glassAnimate(){
+
+            gsap.fromTo(".shine",{
+                x:"-100%"
+            },{
+                x: "150%",
+                duration: 0.8,
+                ease: "linear",
+                
+            })
+        }
+        
+        setInterval(glassAnimate,5000);
+
+        
+    </script>
+</body>
+</html>
